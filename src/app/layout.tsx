@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fascinate, Lora } from "next/font/google";
 import "./globals.css";
+import { Navigation } from "@/components/Navigation";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fascinateFont = Fascinate({
+  variable: "--font-fascinate",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const loraFont = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
 });
 
@@ -24,10 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${fascinateFont.variable} ${loraFont.variable}`}>
+        <main className="min-h-screen">
+          <Navigation />
+          {children}
+        </main>
       </body>
     </html>
   );
