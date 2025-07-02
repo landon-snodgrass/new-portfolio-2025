@@ -1,0 +1,67 @@
+---
+title: "Building Type-Safe Medical Forms: A Labor Charting Case Study"
+date: "2025-01-15"
+excerpt: "Deep dive into the technical challenges of creating flexible yet type-safe forms for healthcare workflows, using our labor charting system as a real-world example."
+tags: ["TypeScript", "React", "Healthcare", "Forms"]
+readTime: "12 min read"
+---
+
+Charting a labor is a complex process with no "industry standard" workflow. If you were unaware, OB/GYN doctors use in-hospital systems to chart labor so midwives are the only users in need of a labor charting workflow. Because midwifery is a growing and under-developed field, there's not an industry standard workflow for charting a labor.
+
+## The Challenge
+
+Because there are a lot of things that can happen during a labor (and a lot of things that may not happen), a labor charting workflow needs to be **incredibly flexible**. There's essentially no "happy path" in a flow like this because every labor is different and some can take dramatic turns.
+
+In the instance of a life-threatening incident (the mother or baby are hemorrhaging or need resuscitation) things happen rapidly and can sometimes result in the transfer of the patients to another facility.
+
+All of that means that the data captured in a labor not only needs to be flexible, it also needs to be **airtight and quickly captured** by the user. These things are kind of diametrically opposed in software.
+
+## Technical Requirements
+
+The technical requirements we designed for labor were:
+
+- **Full type safety** for every form
+- **Complete data integrity** with a single source of truth for a labor  
+- **Data should easily flow** from a labor into the rest of the app
+
+## Full Type Safety for Every Form
+
+The solution I designed for this was first to create the types for every form. Because we had OpenAPI already implemented and Go is a strongly typed language, the backend portion of this was fairly simple: create the form types in the OpenAPI YAML files, then have the Go endpoint accept a Union type of all the forms.
+
+However, the frontend was slightly more complicated. Since TypeScript transpiles to regular old JavaScript there are a lot of issues with runtime type checking. I have tried dynamically creating forms based off a configuration file in the past and I've always run into issues with runtime type checking and type safety in general.
+
+### The Generic Wrapper Solution
+
+What I ended up doing for labor instead was creating a **generic wrapper component** with a type parameter. The type parameter would be one of the form types. I then created a component for each of the forms with just the inputs. 
+
+Using the React Hook Form library's Form Context Provider, the generic wrapper component created a form context provider that was typed with the wrapper component's type parameter.
+
+```typescript
+interface FormWrapperProps<T> {
+  formType: T
+  onSubmit: (data: T) => void
+  children: React.ReactNode
+}
+
+function FormWrapper<T>({ formType, onSubmit, children }: FormWrapperProps<T>) {
+  const methods = useForm<T>()
+  
+  return (
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        {children}
+      </form>
+    </FormProvider>
+  )
+}
+```
+
+In the child form component, you can assert the type safely and get full type checking for the forms you're creating. For example, if you give a form element a name property that's not in the form type, your IDE's type checker should throw an error.
+
+## Complete Data Integrity
+
+Once all of the form components were created, I created a **map object** which mapped the ID of the form needed to the wrapper component with the correct type parameter and the correct form child.
+
+I will admit that this method required a lot of boilerplate and typing, but once everything was created, the system worked well. In general, my philosophy is doing things manually like this is safer and ends up saving time than coming up with a convoluted yet clever system to do things dynamically.
+
+The result was when adding a new form to the OpenAPI schema, I would get a ton of build and type errors that wouldn't go away until I had implemented the new form correctly, which is exactly what I wanted.
