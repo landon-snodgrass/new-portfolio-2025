@@ -1,6 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
+export function MDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => (
       <h1 className="text-3xl font-bold text-[#4A3426] mb-4">{children}</h1>

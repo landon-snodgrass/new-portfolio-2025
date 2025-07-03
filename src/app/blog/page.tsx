@@ -1,10 +1,9 @@
-import Link from 'next/link'
-import { getAllBlogPosts, formatDate } from '@/lib/blog'
-import { motion } from 'framer-motion'
-import { Calendar, Clock, Tag } from 'lucide-react'
+import Link from "next/link";
+import { getAllBlogPosts, formatDate } from "@/lib/blog";
+import { Calendar, Clock, Tag } from "lucide-react";
 
 export default function BlogPage() {
-  const posts = getAllBlogPosts()
+  const posts = getAllBlogPosts();
 
   return (
     <div className="min-h-screen bg-[#F5F2E8]">
@@ -15,8 +14,8 @@ export default function BlogPage() {
             Technical Blog
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Real-world insights from building production applications, 
-            technical challenges, and lessons learned from the trenches.
+            Real-world insights from building production applications, technical
+            challenges, and lessons learned from the trenches.
           </p>
         </div>
       </header>
@@ -26,11 +25,13 @@ export default function BlogPage() {
         <div className="max-w-4xl mx-auto">
           {posts.length === 0 ? (
             <div className="text-center py-16">
-              <p className="text-xl text-gray-600">No blog posts yet. Check back soon!</p>
+              <p className="text-xl text-gray-600">
+                No blog posts yet. Check back soon!
+              </p>
             </div>
           ) : (
             <div className="space-y-12">
-              {posts.map((post, index) => (
+              {posts.map((post) => (
                 <article
                   key={post.slug}
                   className="bg-white rounded-lg p-8 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300"
@@ -47,9 +48,7 @@ export default function BlogPage() {
                   </div>
 
                   <h2 className="text-2xl md:text-3xl font-bold text-[#4A3426] mb-4 hover:text-[#CC5500] transition-colors">
-                    <Link href={`/blog/${post.slug}`}>
-                      {post.title}
-                    </Link>
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h2>
 
                   <p className="text-lg text-gray-600 leading-relaxed mb-6">
@@ -83,5 +82,5 @@ export default function BlogPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }

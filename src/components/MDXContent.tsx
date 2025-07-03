@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { useMDXComponents } from '@/lib/useMDXComponents'
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXComponents } from "@/lib/useMDXComponents";
 
 interface MDXContentProps {
-  source: MDXRemoteSerializeResult
+  source: MDXRemoteSerializeResult;
 }
 
 export default function MDXContent({ source }: MDXContentProps) {
-  const components = useMDXComponents({})
-  return <MDXRemote {...source} components={components} />
+  const components = MDXComponents({});
+  return <MDXRemote {...source} components={components} />;
 }

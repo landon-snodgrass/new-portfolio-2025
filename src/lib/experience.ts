@@ -59,6 +59,7 @@ export async function getExperienceBySlug(slug: string): Promise<ExperienceData 
       ...(matterResult.data as Omit<ExperienceData, 'slug' | 'content'>),
     }
   } catch (error) {
+    console.error(error);
     return null
   }
 }

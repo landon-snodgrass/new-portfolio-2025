@@ -67,6 +67,7 @@ export async function getProjectBySlug(slug: string): Promise<ProjectData | null
       ...(matterResult.data as Omit<ProjectData, 'slug' | 'content'>),
     }
   } catch (error) {
+    console.error(error);
     return null
   }
 }

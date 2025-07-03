@@ -5,7 +5,6 @@ import { HeroSection } from "@/components/HeroSection";
 import { ProjectsSection } from "@/components/ProjectsSections";
 import { getAllExperience } from "@/lib/experience";
 import { getAllProjects } from "@/lib/project";
-import Image from "next/image";
 
 export default function Home() {
   const experiences = getAllExperience();

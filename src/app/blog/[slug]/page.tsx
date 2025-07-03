@@ -3,22 +3,23 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPostBySlug, getAllBlogPosts, formatDate } from "@/lib/blog";
 import { Calendar, Clock, Tag, ArrowLeft } from "lucide-react";
-import { useMDXComponents } from "@/lib/useMDXComponents";
+import { MDXComponents } from "@/lib/useMDXComponents";
 
 interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{
+    slug: string
+  }>
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const components = useMDXComponents({});
+  const components = MDXComponents({});
 
   return (
     <div className="min-h-screen bg-[#F5F2E8]">

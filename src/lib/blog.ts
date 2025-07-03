@@ -60,6 +60,7 @@ export function getBlogPostBySlug(slug: string): BlogPost | null {
       ...(matterResult.data as Omit<BlogPost, 'slug' | 'content'>),
     }
   } catch (error) {
+    console.error(error);
     return null
   }
 }
