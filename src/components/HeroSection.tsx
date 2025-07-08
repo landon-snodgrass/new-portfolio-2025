@@ -88,7 +88,7 @@ export const HeroSection = () => {
               <span className="font-semibold text-burnt-orange">
                 scalable, user-friendly, and fast
               </span>{" "}
-              applications with a focus on modern frontend technology.
+              full-stack applications with a focus on modern frontend technology.
             </motion.p>
 
             <motion.div

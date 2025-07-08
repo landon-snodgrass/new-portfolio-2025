@@ -1,0 +1,41 @@
+---
+title: "Labor Charting Flow"
+description: "A complex charting flow used by midwives to document a labor."
+technologies: ["React", "Next.js", "TypeScript", "Go", "MySQL"]
+status: "completed"
+featured: true
+order: 1
+image: "/projects/pario-labor-screenshot.png"
+---
+
+Documenting a labor is a complex process with no "industry standard" workflow. We needed to 
+build a module that would allow midwives to document a labor flexibly and accurately. 
+
+## Key Technical Challenges
+
+**Dynamic and inconsistent data:**
+Every labor is different and the data captured can vary widely. However, data consistency (not only 
+within the labor itself, but across the app) is vitally important. This means our system had to be 
+extremely flexible but also type-safe and consistent.
+
+**Complex Form Architecture**
+The labor charting module required managing over 15 distinct forms that midwives could complete in various 
+orders depending on how the labor progressed. Some forms, like vital signs monitoring, needed to be submitted
+multiple times, whereas other forms like delivery details were one-time entires and needed to be unique. 
+
+## Solutions
+
+**The single source of truth:**
+To keep data consistent across the entire labor as well as the entire app, we moved most of the business
+logic to the backend to keep the frontend as "dumb" as possible. The backend was in charge of maintaining
+a consistent labor object and would handle passing the correct data back to the frontend. The key to this 
+was ensuring strict typing on both the frontend and that backend which we managed with our OpenAPI type 
+generation pipeline.
+
+**Generic form wrapper and type parameters**
+On the frontend to keep the forms typed and consistent, we built a generic form wrapper that used TypeScript generics to 
+ensure each form was properly typed at compile time. The state of the form was pulled directly from the
+backend so that our single source of truth never got out of sync. On the frontend we created configuration
+files to map the various forms to the correct location within the module.
+
+---

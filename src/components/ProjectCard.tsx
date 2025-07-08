@@ -8,6 +8,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import MDXContent from "./MDXContent";
 import Link from "next/link";
 import { ExternalLink, Github, FileText } from "lucide-react";
+import Image from "next/image";
 
 interface ProjectCardProps {
   project: ProjectData;
@@ -65,12 +66,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={`p-8 rounded-lg border border-gray-200 hover:shadow-xl transition-all duration-300 ${
-        project.status === "coming-soon"
-          ? "bg-gray-50 opacity-75"
-          : "bg-[#F5F2E8] hover:bg-white"
-      }`}
-      whileHover={{ y: project.status === "coming-soon" ? 0 : -4 }}
+      className="p-8 rounded-lg border-2 border-burnt-orange bg-warm-cream"
     >
       <div className="flex flex-wrap justify-between items-start mb-4">
         <div className="flex-1">
@@ -78,15 +74,17 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <h3 className="text-2xl font-bold text-[#4A3426]">
               {project.title}
             </h3>
-            <span
-              className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                project.status
-              )}`}
-            >
-              {getStatusText(project.status)}
-            </span>
           </div>
           <p className="text-lg text-gray-600 mb-3">{project.description}</p>
+          {project.image && (
+            <Image
+              src={project.image}
+              alt={`Screenshot for ${project.title}`}
+              width={1280}
+              height={720}
+              className="border-2 border-gray-400 shadow-lg"
+            />
+          )}
         </div>
       </div>
 
