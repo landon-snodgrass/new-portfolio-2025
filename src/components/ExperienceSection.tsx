@@ -19,7 +19,7 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
       <div className="max-w-6xl mx-auto">
         <motion.h2
           ref={ref}
-          className="fascinate-font text-4xl md:text-5xl text-center mb-16 text-[#CC5500]"
+          className="fascinate-font text-4xl md:text-5xl text-center mb-16 text-burnt-orange"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}

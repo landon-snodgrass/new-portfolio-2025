@@ -120,16 +120,16 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
         {/* Toggle Button (always visible) */}
         <motion.button
           onClick={toggleExpanded}
-          className={`flex items-center justify-center w-12 h-12 bg-white border-2 border-[#CC5500] rounded-lg shadow-lg hover:bg-[#F5F2E8] transition-colors ${
-            isExpanded && isMobile ? "bg-[#F5F2E8]" : ""
+          className={`flex items-center justify-center w-12 h-12 bg-white border-2 border-burnt-orange rounded-lg shadow-lg hover:bg-warm-cream transition-colors ${
+            isExpanded && isMobile ? "bg-warm-cream" : ""
           }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           {isMobile ? (
-            <Menu size={20} className="text-[#CC5500]" />
+            <Menu size={20} className="text-burnt-orange" />
           ) : (
-            <FileText size={20} className="text-[#CC5500]" />
+            <FileText size={20} className="text-burnt-orange" />
           )}
         </motion.button>
 
@@ -137,7 +137,7 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
         <AnimatePresence>
           {isExpanded && (
             <motion.div
-              className={`absolute top-0 right-0 bg-white border-2 border-[#CC5500] rounded-lg shadow-xl ${
+              className={`absolute top-0 right-0 bg-white border-2 border-burnt-orange rounded-lg shadow-xl ${
                 isMobile ? "w-80 max-w-[calc(100vw-3rem)]" : "w-72"
               }`}
               initial={
@@ -158,8 +158,8 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
               {/* Header */}
               <div className="p-4 border-b border-gray-200">
                 <div className="flex items-center gap-3">
-                  <FileText size={20} className="text-[#CC5500]" />
-                  <h3 className="font-semibold text-[#4A3426]">Projects</h3>
+                  <FileText size={20} className="text-burnt-orange" />
+                  <h3 className="font-semibold text-deep-brown">Projects</h3>
                   {isMobile && (
                     <button
                       onClick={() => setIsExpanded(false)}
@@ -179,8 +179,8 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
                     onClick={() => scrollToProject(project.slug)}
                     className={`w-full text-left p-3 rounded-lg transition-all duration-200 flex items-start gap-3 group ${
                       activeProject === project.slug
-                        ? "bg-[#CC5500] text-white"
-                        : "hover:bg-[#F5F2E8] text-gray-700"
+                        ? "bg-burnt-orange text-white"
+                        : "hover:bg-warm-cream text-gray-700"
                     }`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -191,7 +191,7 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
                       className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
                         activeProject === project.slug
                           ? "bg-white"
-                          : "bg-[#CC5500] group-hover:bg-[#4A3426]"
+                          : "bg-burnt-orange group-hover:bg-deep-brown"
                       }`}
                     />
 
@@ -201,7 +201,7 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
                         className={`font-medium text-sm leading-tight ${
                           activeProject === project.slug
                             ? "text-white"
-                            : "text-[#4A3426]"
+                            : "text-deep-brown"
                         }`}
                       >
                         {project.title}

@@ -18,17 +18,17 @@ export const Footer = () => {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com/yourusername",
+      href: "https://github.com/landon-snodgrass",
     },
   ];
 
   return (
     <footer className="py-6 px-6 md:px-12 bg-deep-brown text-warm-cream">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center space-y-6">
+        <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Copyright and Location */}
           <motion.div
-            className="text-center"
+            className="text-center order-2 md:order-1"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -39,7 +39,7 @@ export const Footer = () => {
 
           {/* Contact Links */}
           <motion.div
-            className="flex space-x-6"
+            className="flex space-x-6 order-1 md:order-2"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -59,7 +59,7 @@ export const Footer = () => {
                       ? undefined
                       : "noopener noreferrer"
                   }
-                  className="w-12 h-12 bg-[#CC5500] rounded-lg flex items-center justify-center text-white hover:bg-[#F5F2E8] hover:text-[#4A3426] transition-all duration-300"
+                  className="w-12 h-12 bg-burnt-orange rounded-lg flex items-center justify-center text-white hover:bg-warm-cream hover:text-deep-brown transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}

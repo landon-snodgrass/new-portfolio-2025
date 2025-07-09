@@ -22,14 +22,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const components = MDXComponents({});
 
   return (
-    <div className="min-h-screen bg-[#F5F2E8]">
+    <div className="min-h-screen bg-warm-cream">
       {/* Header */}
       <header className="py-16 px-6 md:px-12 bg-white">
         <div className="max-w-4xl mx-auto">
           {/* Back to blog */}
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-[#CC5500] hover:text-[#4A3426] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-burnt-orange hover:text-deep-brown transition-colors mb-8"
           >
             <ArrowLeft size={20} />
             Back to Blog
@@ -48,7 +48,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Title */}
-          <h1 className="text-3xl md:text-5xl font-bold text-[#4A3426] mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-bold text-deep-brown mb-6 leading-tight">
             {post.title}
           </h1>
 
@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1 bg-[#CC5500] bg-opacity-10 text-[#CC5500] px-3 py-1 rounded-full text-sm font-medium"
+                className="inline-flex items-center gap-1 bg-burnt-orange bg-opacity-10 text-white px-3 py-1 rounded-full text-sm font-medium"
               >
                 <Tag size={12} />
                 {tag}
@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="mt-12 pt-8 border-t border-gray-200">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-[#CC5500] hover:text-[#4A3426] transition-colors"
+              className="inline-flex items-center gap-2 text-burnt-orange hover:text-deep-brown transition-colors"
             >
               <ArrowLeft size={20} />
               Back to all posts

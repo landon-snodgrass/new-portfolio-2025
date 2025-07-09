@@ -65,14 +65,14 @@ export const Navigation = () => {
               {item.href.startsWith("/#") ? (
                 <button
                   onClick={() => handleNavClick(item.href)}
-                  className="nav-underline text-lg hover:text-[#CC5500] transition-colors"
+                  className="nav-underline text-lg hover:text-burnt-orange transition-colors"
                 >
                   {item.label}
                 </button>
               ) : (
                 <Link
                   href={item.href}
-                  className="nav-underline text-lg hover:text-[#CC5500] transition-colors"
+                  className="nav-underline text-lg hover:text-burnt-orange transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -100,7 +100,7 @@ export const Navigation = () => {
                   {item.href.startsWith("/#") ? (
                     <button
                       onClick={() => handleNavClick(item.href)}
-                      className="text-lg hover:text-[#CC5500] transition-colors text-left w-full"
+                      className="text-lg hover:text-burnt-orange transition-colors text-left w-full"
                     >
                       {item.label}
                     </button>
@@ -108,7 +108,7 @@ export const Navigation = () => {
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="text-lg hover:text-[#CC5500] transition-colors block"
+                      className="text-lg hover:text-burnt-orange transition-colors block"
                     >
                       {item.label}
                     </Link>

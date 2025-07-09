@@ -33,32 +33,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     renderMDX();
   }, [project.content]);
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "completed":
-        return "bg-green-100 text-green-800";
-      case "in-progress":
-        return "bg-blue-100 text-blue-800";
-      case "coming-soon":
-        return "bg-gray-100 text-gray-600";
-      default:
-        return "bg-gray-100 text-gray-600";
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case "completed":
-        return "Completed";
-      case "in-progress":
-        return "In Progress";
-      case "coming-soon":
-        return "Coming Soon";
-      default:
-        return status;
-    }
-  };
-
   return (
     <motion.div
       id={`project-${project.slug}`}
@@ -71,7 +45,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       <div className="flex flex-wrap justify-between items-start mb-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <h3 className="text-2xl font-bold text-[#4A3426]">
+            <h3 className="text-2xl font-bold text-deep-brown">
               {project.title}
             </h3>
           </div>
@@ -98,7 +72,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
         {project.technologies.map((tech) => (
           <motion.span
             key={tech}
-            className="bg-[#CC5500] text-white px-3 py-1 rounded-full text-sm hover:bg-[#4A3426] transition-colors cursor-pointer"
+            className="bg-burnt-orange text-white px-3 py-1 rounded-full text-sm hover:bg-deep-brown transition-colors cursor-pointer"
             whileHover={{ scale: 1.05 }}
           >
             {tech}
@@ -114,7 +88,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#CC5500] text-white px-4 py-2 rounded font-medium hover:bg-[#4A3426] transition-colors"
+              className="inline-flex items-center gap-2 bg-burnt-orange text-white px-4 py-2 rounded font-medium hover:bg-deep-brown transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -128,7 +102,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-2 border-[#CC5500] text-[#CC5500] px-4 py-2 rounded font-medium hover:bg-[#CC5500] hover:text-white transition-all"
+              className="inline-flex items-center gap-2 border-2 border-burnt-orange text-burnt-orange px-4 py-2 rounded font-medium hover:bg-burnt-orange hover:text-white transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -141,7 +115,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href={project.caseStudyUrl}
-                className="inline-flex items-center gap-2 border-2 border-[#4A3426] text-[#4A3426] px-4 py-2 rounded font-medium hover:bg-[#4A3426] hover:text-white transition-all"
+                className="inline-flex items-center gap-2 border-2 border-deep-brown text-deep-brown px-4 py-2 rounded font-medium hover:bg-deep-brown hover:text-white transition-all"
               >
                 <FileText size={16} />
                 Case Study

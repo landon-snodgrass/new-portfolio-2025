@@ -70,3 +70,16 @@ body {
     width: 100%;
   }
 }
+
+.fancy-image {
+  box-shadow: 10px 10px var(--burnt-orange);
+  border: solid 5px var(--deep-brown);
+  border-radius: 15px;
+  transition: all 0.25s;
+}
+
+.fancy-image:hover {
+  box-shadow: 15px 15px var(--burnt-orange);
+  transform: rotate(2deg);
+  cursor: pointer;
+}

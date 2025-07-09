@@ -6,11 +6,11 @@ export default function BlogPage() {
   const posts = getAllBlogPosts();
 
   return (
-    <div className="min-h-screen bg-[#F5F2E8]">
+    <div className="min-h-screen bg-warm-cream">
       {/* Header */}
       <header className="py-16 px-6 md:px-12 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="fascinate-font text-4xl md:text-6xl text-[#CC5500] mb-6">
+          <h1 className="fascinate-font text-4xl md:text-6xl text-burnt-orange mb-6">
             Technical Blog
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
@@ -47,7 +47,7 @@ export default function BlogPage() {
                     </div>
                   </div>
 
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#4A3426] mb-4 hover:text-[#CC5500] transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-bold text-deep-brown mb-4 hover:text-burnt-orange">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h2>
 
@@ -60,7 +60,7 @@ export default function BlogPage() {
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="inline-flex items-center gap-1 bg-[#CC5500] bg-opacity-10 text-[#CC5500] px-3 py-1 rounded-full text-sm font-medium"
+                          className="inline-flex items-center gap-1 bg-burnt-orange bg-opacity-10 text-white px-3 py-1 rounded-full text-sm font-medium"
                         >
                           <Tag size={12} />
                           {tag}
@@ -70,7 +70,7 @@ export default function BlogPage() {
 
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="inline-flex items-center text-[#CC5500] font-medium hover:text-[#4A3426] transition-colors"
+                      className="inline-flex items-center text-burnt-orange font-medium hover:text-deep-brown"
                     >
                       Read more →
                     </Link>
