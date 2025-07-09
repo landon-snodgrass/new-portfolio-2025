@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import { Mail, Github, Linkedin, MapPin, DivideSquare } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin } from "lucide-react";
 
 export const AboutSection = () => {
   const ref = useRef(null);
