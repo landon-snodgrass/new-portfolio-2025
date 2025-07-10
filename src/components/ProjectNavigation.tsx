@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ProjectData } from "@/lib/project";
-import { Menu, FileText } from "lucide-react";
+import { Menu, FileText, X } from "lucide-react";
 
 interface ProjectNavigationProps {
   projects: ProjectData[];
@@ -100,7 +100,7 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
       <AnimatePresence>
         {isMobile && isExpanded && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-25 z-40 lg:hidden"
+            className="fixed inset-0 z-40 backdrop-blur-sm lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -165,7 +165,7 @@ export const ProjectNavigation = ({ projects }: ProjectNavigationProps) => {
                       onClick={() => setIsExpanded(false)}
                       className="ml-auto text-gray-400 hover:text-gray-600 transition-colors"
                     >
-                      ×
+                      <X />
                     </button>
                   )}
                 </div>
