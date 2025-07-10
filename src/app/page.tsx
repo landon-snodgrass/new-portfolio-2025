@@ -1,8 +1,4 @@
-import { AboutSection } from "@/components/AboutSection";
-import { ExperienceSection } from "@/components/ExperienceSection";
-import { Footer } from "@/components/Footer";
-import { HeroSection } from "@/components/HeroSection";
-import { ProjectsSection } from "@/components/ProjectsSections";
+import { ContentWrapper } from "@/components/ContentWrapper";
 import { getAllExperience } from "@/lib/experience";
 import { getAllProjects } from "@/lib/project";
 
@@ -10,13 +6,5 @@ export default function Home() {
   const experiences = getAllExperience();
   const projects = getAllProjects();
 
-  return (
-    <>
-      <HeroSection />
-      <ExperienceSection experiences={experiences} />
-      <ProjectsSection projects={projects} />
-      <AboutSection />
-      <Footer />
-    </>
-  );
+  return <ContentWrapper experiences={experiences} projects={projects} />;
 }

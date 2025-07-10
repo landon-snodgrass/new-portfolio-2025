@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, MotionConfig } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -44,7 +44,7 @@ export const Navigation = () => {
   };
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <nav className="px-6 py-6 md:px-12 bg-deep-brown text-white relative z-41">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <motion.h1
@@ -134,6 +134,6 @@ export const Navigation = () => {
           />
         )}
       </AnimatePresence>
-    </>
+    </MotionConfig>
   );
 };

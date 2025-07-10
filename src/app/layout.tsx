@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fascinate, Lora } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
-import { MotionConfig } from "motion/react";
 
 const fascinateFont = Fascinate({
   variable: "--font-fascinate",
@@ -46,10 +45,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${fascinateFont.variable} ${loraFont.variable}`}>
         <main className="min-h-screen">
-          <MotionConfig reducedMotion="user">
-            <Navigation />
-            {children}
-          </MotionConfig>
+          <Navigation />
+          {children}
         </main>
       </body>
     </html>

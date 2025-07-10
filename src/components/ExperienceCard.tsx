@@ -1,5 +1,7 @@
+"use client";
+
 import { ExperienceData } from "@/lib/experience";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { serialize } from "next-mdx-remote/serialize";
 import { useEffect, useRef, useState } from "react";
 import MDXContent from "./MDXContent";

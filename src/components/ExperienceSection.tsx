@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion } from "motion/react";
+import { useInView } from "motion/react";
 import { useRef } from "react";
 import { ExperienceData } from "@/lib/experience";
 import { ExperienceCard } from "./ExperienceCard";

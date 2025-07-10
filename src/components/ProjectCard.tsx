@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion } from "motion/react";
+import { useInView } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import { ProjectData } from "@/lib/project";
 import { serialize } from "next-mdx-remote/serialize";
