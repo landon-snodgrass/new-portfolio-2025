@@ -1,9 +1,9 @@
 ---
 title: "Building Type-Safe Medical Forms: A Labor Charting Case Study"
-date: "2025-01-15"
+date: "2025-07-02"
 excerpt: "Deep dive into the technical challenges of creating flexible yet type-safe forms for healthcare workflows, using our labor charting system as a real-world example."
 tags: ["TypeScript", "React", "Healthcare", "Forms"]
-readTime: "12 min read"
+readTime: "8 min read"
 ---
 
 Charting a labor is a complex process with no "industry standard" workflow. If you were unaware, OB/GYN doctors use in-hospital systems to chart labor so midwives are the only users in need of a labor charting workflow. Because midwifery is a growing and under-developed field, there's not an industry standard workflow for charting a labor.
@@ -34,7 +34,7 @@ However, the frontend was slightly more complicated. Since TypeScript transpiles
 
 What I ended up doing for labor instead was creating a **generic wrapper component** with a type parameter. The type parameter would be one of the form types. I then created a component for each of the forms with just the inputs. 
 
-Using the React Hook Form library's Form Context Provider, the generic wrapper component created a form context provider that was typed with the wrapper component's type parameter.
+Using the [React Hook Form](https://react-hook-form.com/) library's Form Context Provider, the generic wrapper component created a form context provider that was typed with the wrapper component's type parameter.
 
 ```typescript
 interface FormWrapperProps<T> {
@@ -58,10 +58,35 @@ function FormWrapper<T>({ formType, onSubmit, children }: FormWrapperProps<T>) {
 
 In the child form component, you can assert the type safely and get full type checking for the forms you're creating. For example, if you give a form element a name property that's not in the form type, your IDE's type checker should throw an error.
 
-## Complete Data Integrity
-
 Once all of the form components were created, I created a **map object** which mapped the ID of the form needed to the wrapper component with the correct type parameter and the correct form child.
 
 I will admit that this method required a lot of boilerplate and typing, but once everything was created, the system worked well. In general, my philosophy is doing things manually like this is safer and ends up saving time than coming up with a convoluted yet clever system to do things dynamically.
 
 The result was when adding a new form to the OpenAPI schema, I would get a ton of build and type errors that wouldn't go away until I had implemented the new form correctly, which is exactly what I wanted.
+
+## Complete Data Integrity
+
+When a labor happens, it's not just a one-time event. There are lasting impacts on that patient's care. The most obvious one is that they'll have a new child that will also need care.
+
+When a baby is delivered, there's a lot of charting done on the infant. The tricky thing is that not all of this data is charted in a single place. For example, a provider charts the birth event with a timestamp, but later needs to do a newborn exam where they chart the infant's birth date and time again. These should be the same.
+
+The system we designed was that there is a single data object for a labor which pulls data from those forms and stores it on the grander labor object. When the frontend requests a specific form, it populates that form with the correct data, even if the data was changed elsewhere.
+
+## Results
+
+This architecture solved our main challenges:
+- **Zero data inconsistencies** since every thing is stored and updated on the backend, everywhere the frontend requests the data is updated.
+- **Type safety** that caught issues at compile time, making adding new forms straightforward since TypeScript errors would guide you to the correct implementation.
+- **Better UI** that was more snappy and easier to understand for the user. 
+
+Overall, I think the project went very well. It was really big in scope but the architecture made it fairly easy to maintain.
+
+## Lessons learned
+
+This project definitely reinforced my belief that boilerplate code or having to type a lot isn't necessarily a bad thing. Sometimes, doing something manually is better than coming up with a clever, but complicated, solution to automate something.
+
+Something we constantly reiterated at Pario was how to be more [grug brained](https://grugbrain.dev/). We actually made that article required reading when you joined.
+
+Something that I think helped a lot with this project was I was given the time to actually plan an architect it out. Often when working at a fast paced start-up you don't have a lot of time for planning, you just have to go go go but with this project I was given time to think about a good solution.
+
+This made it a lot easier when it got down to the actual coding because I had a general idea of the overall architecture. Things changed throughout the process obviously, because what's a software project without scope creep, but overall it went smoothly becaue of that "R&D time".
