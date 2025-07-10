@@ -34,8 +34,6 @@ export const ContentWrapper = ({
 
   const reducedMotion = isMobile ? "always" : "user";
 
-  console.log(reducedMotion);
-
   return (
     <MotionConfig reducedMotion={reducedMotion}>
       <HeroSection />
