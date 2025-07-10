@@ -11,11 +11,11 @@ export default function BlogPage() {
       <header className="py-16 px-6 md:px-12 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="fascinate-font text-4xl md:text-6xl text-burnt-orange mb-6">
-            Technical Blog
+            Blog
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Real-world insights from building production applications, technical
-            challenges, and lessons learned from the trenches.
+            Just some thoughts on building production applications, technical
+            challenges, and lessons learned.
           </p>
         </div>
       </header>
